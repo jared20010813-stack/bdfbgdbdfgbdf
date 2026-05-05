@@ -1,13 +1,102 @@
-<div class="game-library">
-    <!-- Drive Mad Card -->
-    <div class="card">
-        <!-- Replace 'your-username' with your actual GitHub username -->
-        <iframe 
-            src="https://cdn.jsdelivr.net/gh/jared20010813/bdfbgdbdfgbdf-main@main/tell.svg" 
-            width="200" 
-            height="200" 
-            style="border:none;">
-        </iframe>
-        <p>Drive Mad (Click Yellow Button to Play)</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Library</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { margin-bottom: 30px; color: #ffcc00; }
+
+        .library-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .game-card {
+            background: #2a2a2a;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #444;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-color: #ffcc00;
+        }
+
+        /* This container holds the interactive SVG from jsDelivr */
+        .svg-launcher {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #333;
+            margin-bottom: 15px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: all; /* Ensures you can click the button inside */
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .game-desc {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Game Proxy Library</h1>
+
+    <div class="library-container">
+        <!-- Drive Mad Game Card -->
+        <div class="game-card">
+            <div class="svg-launcher">
+                <!-- Points to your specific jsDelivr link -->
+                <iframe src="https://cdn.jsdelivr.net/gh/jared20010813-stack/bdfbgdbdfgbdf@main/tell.svg"></iframe>
+            </div>
+            <div class="game-title">Drive Mad</div>
+            <div class="game-desc">Click the yellow button above to launch the game in the proxy frame!</div>
+        </div>
+
+        <!-- Add more game cards here in the future -->
     </div>
-</div>
+
+    <script>
+        // Listener to redirect the whole page to game.html when the SVG is clicked
+        window.addEventListener('message', (event) => {
+            if (event.data.action === 'load_game') {
+                console.log("Redirecting to Game Environment...");
+                // Redirects to your game.html with the URL parameter
+                window.location.href = `game.html?url=${encodeURIComponent(event.data.url)}`;
+            }
+        });
+    </script>
+</body>
+</html>
