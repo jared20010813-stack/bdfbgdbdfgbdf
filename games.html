@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourDoge - Games</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/standalone@4.0.0/dist/tailwind.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    body { font-family: 'Press Start 2P', system-ui; }
+    .doge-yellow { color: #FFCC00; }
+    iframe { border: none; width: 100%; height: calc(100vh - 70px); }
+  </style>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen">
+  <div class="max-w-6xl mx-auto p-6">
+    
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <a href="index.html" class="text-yellow-400 hover:underline text-lg">← Home</a>
+      <h1 class="text-4xl font-bold doge-yellow">🎮 YOURDOGE GAMES</h1>
+      <button onclick="closeGame()" id="closeBtn" class="hidden px-6 py-2 bg-red-600 hover:bg-red-700 rounded-xl">✕ Close Game</button>
+    </div>
+
+    <!-- Game List -->
+    <div id="gameList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Games populated by JavaScript -->
+    </div>
+
+    <!-- Game Viewer (Loads Inside) -->
+    <div id="gameFrame" class="hidden fixed inset-0 bg-zinc-950 z-50 flex flex-col">
+      <div class="bg-zinc-900 p-4 flex justify-between items-center border-b border-yellow-400">
+        <h2 id="gameTitle" class="text-xl font-bold doge-yellow"></h2>
+        <button onclick="closeGame()" class="text-3xl hover:text-red-500 px-4">✕</button>
+      </div>
+      <iframe id="gameIframe" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Scramjet -->
+  <script src="baremux/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/PeteZah-G/PeteStatic@main/scram/scramjet.all.js"></script>
+
+  <script>
+    const games = [
+      { name: "Slope", url: "https://slope-game.github.io/" },
+      { name: "1v1.LOL", url: "https://1v1.lol/" },
+      { name: "Geometry Dash", url: "https://geometrydash.io/" },
+      { name: "Krunker", url: "https://krunker.io/" },
+      { name: "Shell Shockers", url: "https://shellshock.io/" },
+      { name: "Paper.io", url: "https://papergames.io/" },
+      { name: "Retro Bowl", url: "https://retrobowl.me/" },
+      { name: "Hole.io", url: "https://hole-io.com/" },
+      { name: "Tank Royale", url: "https://tankroyale.io/" },
+      { name: "Zombs Royale", url: "https://zombsroyale.io/" },
+      { name: "Vex 3", url: "https://vex3.io/" },
+      { name: "Cookie Clicker", url: "https://cookieclicker.io/" }
+    ];
+
+    function loadGame(url, name) {
+      document.getElementById('gameList').classList.add('hidden');
+      document.getElementById('gameFrame').classList.remove('hidden');
+      document.getElementById('closeBtn').classList.remove('hidden');
+      document.getElementById('gameTitle').textContent = name;
+
+      const iframe = document.getElementById('gameIframe');
+      iframe.src = url;   // Loads inside iframe
+    }
+
+    function closeGame() {
+      document.getElementById('gameIframe').src = '';
+      document.getElementById('gameFrame').classList.add('hidden');
+      document.getElementById('gameList').classList.remove('hidden');
+      document.getElementById('closeBtn').classList.add('hidden');
+    }
+
+    // Create game cards
+    const container = document.getElementById('gameList');
+    games.forEach(game => {
+      const card = document.createElement('div');
+      card.className = "bg-zinc-900 hover:bg-zinc-800 border-2 border-zinc-700 hover:border-yellow-400 rounded-3xl p-8 text-center transition-all cursor-pointer";
+      card.innerHTML = `
+        <div class="text-6xl mb-4">${getEmoji(game.name)}</div>
+        <p class="font-bold text-lg">${game.name}</p>
+      `;
+      card.onclick = () => loadGame(game.url, game.name);
+      container.appendChild(card);
+    });
+
+    function getEmoji(name) {
+      const map = {"Slope":"🏂","1v1.LOL":"🔫","Geometry Dash":"⚡","Krunker":"🔫","Shell Shockers":"💥",
+                   "Paper.io":"📄","Retro Bowl":"🏈","Hole.io":"🕳️","Tank Royale":"🛡️","Zombs Royale":"🔫",
+                   "Vex 3":"🏃","Cookie Clicker":"🍪"};
+      return map[name] || "🎮";
+    }
+
+    // Register Scramjet
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+</body>
+</html>
