@@ -1,52 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="position:fixed;inset:0;background:#18181b;">
-  <foreignObject x="0" y="0" width="100%" height="100%">
-    <body xmlns="http://www.w3.org/1999/xhtml" style="margin:0;padding:0;height:100vh;background:#18181b;color:white;font-family:'Press Start 2P',system-ui;overflow:auto;">
-      
-      <div style="max-width:1100px;margin:40px auto;padding:30px;text-align:center;">
-        <div style="display:flex;align-items:center;justify-content:center;gap:25px;margin-bottom:50px;">
-          <svg width="110" height="110" viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="75" fill="#FFCC00"/>
-            <circle cx="70" cy="80" r="18" fill="#111"/>
-            <circle cx="130" cy="80" r="18" fill="#111"/>
-            <circle cx="75" cy="75" r="8" fill="#fff"/>
-            <circle cx="135" cy="75" r="8" fill="#fff"/>
-            <path d="M65 130 Q100 160 135 130" fill="none" stroke="#111" stroke-width="15" stroke-linecap="round"/>
-          </svg>
-          <div>
-            <h1 style="font-size:58px;color:#FFCC00;margin:0;">YOURDOGE</h1>
-            <p style="color:#34D399;font-size:22px;">UNBLOCK • GAMES • HUB</p>
-          </div>
-        </div>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1200 700" style="position:fixed;inset:0;background:#18181b;" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-        <input id="urlInput" type="text" placeholder="https://google.com" 
-               style="width:80%;max-width:700px;padding:25px;font-size:24px;background:#27272a;border:5px solid #FFCC00;border-radius:50px;color:white;outline:none;"/>
+  <!-- Background -->
+  <rect width="1200" height="700" fill="#18181b"/>
 
-        <button onclick="proxyGo()" 
-                style="margin-top:25px;width:80%;max-width:700px;padding:25px;font-size:28px;background:#FFCC00;color:black;border:none;border-radius:50px;font-weight:bold;">
-          GO →
-        </button>
+  <!-- Doge Logo -->
+  <circle cx="170" cy="110" r="75" fill="#FFCC00"/>
+  <circle cx="130" cy="85" r="18" fill="#111"/>
+  <circle cx="210" cy="85" r="18" fill="#111"/>
+  <circle cx="135" cy="82" r="8" fill="#fff"/>
+  <circle cx="215" cy="82" r="8" fill="#fff"/>
+  <path d="M120 135 Q170 165 220 135" fill="none" stroke="#111" stroke-width="15" stroke-linecap="round"/>
 
-        <div style="margin-top:80px;">
-          <button onclick="playDriveMad()" 
-                  style="padding:40px 90px;font-size:32px;background:#FFCC00;color:black;border:none;border-radius:9999px;font-weight:bold;">
-            🚗 PLAY DRIVE MAD
-          </button>
-        </div>
-      </div>
+  <!-- Title -->
+  <text x="320" y="95" font-size="72" fill="#FFCC00" font-weight="bold" font-family="'Press Start 2P', sans-serif">YOURDOGE</text>
+  <text x="320" y="135" font-size="24" fill="#34D399" font-family="'Press Start 2P', sans-serif">UNBLOCK • GAMES • HUB</text>
 
-      <script>
-        function proxyGo() {
-          let url = document.getElementById('urlInput').value.trim();
-          if (!url) return alert("Enter a URL!");
-          if (!url.startsWith('http')) url = 'https://' + url;
-          window.location.href = url;
-        }
+  <!-- Proxy Input (visual only) -->
+  <rect x="200" y="220" width="620" height="85" rx="40" fill="#27272a" stroke="#FFCC00" stroke-width="12"/>
+  <text x="250" y="275" font-size="28" fill="#666" font-family="'Press Start 2P', sans-serif">https://google.com</text>
 
-        function playDriveMad() {
-          window.open("https://drive-mad-unblock.github.io/", "_blank");
-        }
-      </script>
-    </body>
-  </foreignObject>
+  <!-- GO Button (clickable) -->
+  <a xlink:href="https://cdn.jsdelivr.net/gh/jared20010813-stack/bdfbgdbdfgbdf/index.html" target="_blank">
+    <rect x="850" y="225" width="220" height="75" rx="20" fill="#FFCC00"/>
+    <text x="960" y="275" font-size="32" fill="#111" font-weight="bold" text-anchor="middle" font-family="'Press Start 2P', sans-serif">GO →</text>
+  </a>
+
+  <!-- Play Drive Mad (clickable) -->
+  <a xlink:href="https://drive-mad-unblock.github.io/" target="_blank">
+    <rect x="380" y="380" width="440" height="220" rx="30" fill="#3f3f46" stroke="#FFCC00" stroke-width="15"/>
+    <text x="600" y="480" font-size="110" text-anchor="middle">🚗</text>
+    <text x="600" y="570" font-size="34" fill="#fff" text-anchor="middle" font-weight="bold" font-family="'Press Start 2P', sans-serif">DRIVE MAD</text>
+  </a>
+
+  <!-- Footer -->
+  <text x="600" y="660" font-size="18" fill="#555" text-anchor="middle" font-family="'Press Start 2P', sans-serif">Click the buttons above • Powered by Scramjet</text>
+
 </svg>
