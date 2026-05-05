@@ -16,3 +16,19 @@ async function handleRequest(event) {
 self.addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event));
 });
+// This strips the security blocks that stop Drive Mad from loading
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        fetch(event.request).then((response) => {
+            const newHeaders = new Headers(response.headers);
+            newHeaders.delete('X-Frame-Options');
+            newHeaders.delete('Content-Security-Policy');
+            return new Response(response.body, {
+                status: response.status,
+                statusText: response.statusText,
+                headers: newHeaders
+            });
+        })
+    );
+});
+
