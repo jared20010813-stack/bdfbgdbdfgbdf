@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourDoge Unblocker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    body { font-family: 'Press Start 2P', system-ui; }
+    .doge-yellow { color: #FFCC00; }
+  </style>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen">
+
+  <div class="max-w-6xl mx-auto p-8">
+    <!-- Header -->
+    <div class="flex items-center gap-6 mb-16">
+      <img src="main.svg" width="120" height="120" alt="YourDoge">
+      <div>
+        <h1 class="text-6xl font-bold doge-yellow">YOURDOGE</h1>
+        <p class="text-emerald-400 text-2xl">UNBLOCK • GAMES • HUB</p>
+      </div>
+    </div>
+
+    <!-- Proxy Bar -->
+    <div class="max-w-3xl mx-auto mb-12">
+      <input id="urlInput" type="text" placeholder="https://google.com" 
+             class="w-full bg-zinc-900 border-4 border-zinc-700 focus:border-yellow-400 rounded-3xl px-10 py-8 text-2xl outline-none">
+      <button onclick="proxyGo()" 
+              class="mt-6 w-full bg-yellow-400 hover:bg-amber-300 text-black font-bold text-3xl py-8 rounded-3xl">
+        GO →
+      </button>
+    </div>
+
+    <!-- Drive Mad Button -->
+    <div class="text-center">
+      <button onclick="playDriveMad()" 
+              class="bg-yellow-400 hover:bg-amber-300 text-black font-bold text-4xl px-20 py-12 rounded-3xl transition-all hover:scale-110">
+        🚗 PLAY DRIVE MAD
+      </button>
+    </div>
+  </div>
+
+  <!-- Game Overlay (loads inside the same page) -->
+  <div id="gameOverlay" class="hidden fixed inset-0 bg-black z-[9999] flex flex-col">
+    <div class="bg-zinc-900 p-4 flex justify-between items-center">
+      <h2 class="text-2xl font-bold doge-yellow">🚗 DRIVE MAD</h2>
+      <button onclick="closeGame()" class="px-8 py-3 bg-red-600 hover:bg-red-700 rounded-2xl text-lg font-bold">✕ CLOSE</button>
+    </div>
+    <iframe id="gameFrame" class="flex-1 w-full" allowfullscreen></iframe>
+  </div>
+
+  <script src="baremux/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/PeteZah-G/PeteStatic@main/scram/scramjet.all.js"></script>
+
+  <script>
+    function proxyGo() {
+      let url = document.getElementById('urlInput').value.trim();
+      if (!url) return alert("Enter a URL!");
+      if (!url.startsWith('http')) url = 'https://' + url;
+      window.location.href = url;
+    }
+
+    function playDriveMad() {
+      document.getElementById('gameOverlay').classList.remove('hidden');
+      document.getElementById('gameFrame').src = "https://drive-mad-unblock.github.io/";
+    }
+
+    function closeGame() {
+      document.getElementById('gameFrame').src = '';
+      document.getElementById('gameOverlay').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
