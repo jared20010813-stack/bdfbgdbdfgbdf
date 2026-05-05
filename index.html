@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YourDoge Unblocker</title>
+  
+  <!-- Tailwind via jsDelivr -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/standalone@4.0.0/dist/tailwind.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     body { font-family: 'Press Start 2P', system-ui; }
@@ -13,47 +16,49 @@
   </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen">
-  <div class="max-w-6xl mx-auto p-6">
-    <div class="flex items-center justify-between mb-12">
-      <div class="flex items-center gap-4">
-        <img src="main.svg" width="90" height="90" alt="YourDoge" class="drop-shadow-2xl">
+  <div class="max-w-6xl mx-auto p-8">
+    
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-16">
+      <div class="flex items-center gap-6">
+        <img src="main.svg" width="100" height="100" alt="YourDoge" class="drop-shadow-2xl">
         <div>
-          <h1 class="text-5xl font-bold tracking-wider doge-yellow">YOURDOGE</h1>
-          <p class="text-emerald-400 text-xl">UNBLOCK • GAMES • HUB</p>
+          <h1 class="text-6xl font-bold tracking-widest doge-yellow">YOURDOGE</h1>
+          <p class="text-emerald-400 text-2xl">UNBLOCK • GAMES • HUB</p>
         </div>
       </div>
     </div>
 
-    <div class="max-w-3xl mx-auto mb-16">
+    <!-- Proxy Bar -->
+    <div class="max-w-3xl mx-auto mb-20">
       <div class="relative">
-        <input id="urlInput" type="text" placeholder="https://google.com" 
-               class="w-full bg-zinc-900 border-2 border-zinc-700 focus:border-yellow-400 rounded-3xl px-8 py-7 text-xl outline-none transition-all"
-               onkeypress="if(event.key === 'Enter') proxyGo()">
+        <input 
+          id="urlInput"
+          type="text" 
+          placeholder="https://google.com"
+          class="w-full bg-zinc-900 border-4 border-zinc-700 focus:border-yellow-400 rounded-3xl px-10 py-8 text-2xl outline-none transition-all"
+          onkeypress="if(event.key === 'Enter') proxyGo()">
         <button onclick="proxyGo()" 
-                class="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-amber-300 text-black font-bold px-12 py-5 rounded-2xl text-lg">
+                class="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-amber-300 text-black font-bold px-14 py-6 rounded-2xl text-xl">
           GO →
         </button>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Games Button -->
-      <a href="games.html" class="bg-zinc-900 hover:bg-zinc-800 border border-yellow-400 rounded-3xl p-12 text-center hover:scale-105 transition-all">
-        <div class="text-7xl mb-6">🎮</div>
-        <h2 class="text-3xl font-bold doge-yellow">PLAY GAMES</h2>
-      </a>
-      <!-- Quick Links -->
-      <a href="https://youtube.com" target="_blank" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-3xl p-12 text-center hover:scale-105 transition-all">
-        <i class="fab fa-youtube text-7xl mb-6 text-red-500"></i>
-        <h2 class="text-3xl font-bold">YouTube</h2>
+    <!-- Games Button -->
+    <div class="text-center">
+      <a href="games.html" 
+         class="inline-block bg-yellow-400 hover:bg-amber-300 text-black font-bold text-3xl px-20 py-10 rounded-3xl transition-all hover:scale-110 shadow-xl">
+        🎮 PLAY GAMES
       </a>
     </div>
 
-    <div class="text-center mt-20 text-zinc-500 text-sm">
-      Custom Doge Unblocker • Powered by Scramjet
+    <div class="text-center mt-24 text-zinc-500">
+      Powered by Scramjet • Custom Doge Unblocker
     </div>
   </div>
 
+  <!-- Scramjet -->
   <script src="baremux/index.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/PeteZah-G/PeteStatic@main/scram/scramjet.all.js"></script>
 
@@ -61,21 +66,24 @@
     async function proxyGo() {
       let url = document.getElementById('urlInput').value.trim();
       if (!url) return alert("Enter a URL!");
+
       if (!url.startsWith('http')) url = 'https://' + url;
+
       try {
-        if (window.scramjet) await window.scramjet.loadConfig();
+        if (window.scramjet) {
+          await window.scramjet.loadConfig();
+        }
         window.location.href = url;
       } catch (e) {
         window.open(url, '_blank');
       }
     }
 
+    // Register Service Worker
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(() => {
-        console.log('%c✅ Scramjet Ready - Doge Mode', 'color:#FFCC00');
-      });
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('%c✅ YourDoge Scramjet Ready', 'color:#FFCC00'));
     }
-    window.onload = () => document.getElementById('urlInput').focus();
   </script>
 </body>
 </html>
