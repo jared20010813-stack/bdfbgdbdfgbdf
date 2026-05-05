@@ -1,39 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1200 700" style="position:fixed;inset:0;background:#18181b;" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <style>
+    #drive-mad-btn {
+      fill: #ffcc00;
+      stroke: #333;
+      stroke-width: 4;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    #drive-mad-btn:hover { fill: #ffdb4d; transform: scale(1.05); transform-origin: center; }
+  </style>
 
-  <!-- Background -->
-  <rect width="1200" height="700" fill="#18181b"/>
+  <rect id="drive-mad-btn" x="20" y="60" width="160" height="80" rx="10" />
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="18" fill="#333" pointer-events="none">
+    DRIVE MAD
+  </text>
 
-  <!-- Doge Logo -->
-  <circle cx="170" cy="110" r="75" fill="#FFCC00"/>
-  <circle cx="130" cy="85" r="18" fill="#111"/>
-  <circle cx="210" cy="85" r="18" fill="#111"/>
-  <circle cx="135" cy="82" r="8" fill="#fff"/>
-  <circle cx="215" cy="82" r="8" fill="#fff"/>
-  <path d="M120 135 Q170 165 220 135" fill="none" stroke="#111" stroke-width="15" stroke-linecap="round"/>
-
-  <!-- Title -->
-  <text x="320" y="95" font-size="72" fill="#FFCC00" font-weight="bold" font-family="'Press Start 2P', sans-serif">YOURDOGE</text>
-  <text x="320" y="135" font-size="24" fill="#34D399" font-family="'Press Start 2P', sans-serif">UNBLOCK • GAMES • HUB</text>
-
-  <!-- Proxy Input (visual only) -->
-  <rect x="200" y="220" width="620" height="85" rx="40" fill="#27272a" stroke="#FFCC00" stroke-width="12"/>
-  <text x="250" y="275" font-size="28" fill="#666" font-family="'Press Start 2P', sans-serif">https://google.com</text>
-
-  <!-- GO Button (clickable) -->
-  <a xlink:href="https://cdn.jsdelivr.net/gh/jared20010813-stack/bdfbgdbdfgbdf/index.html" target="_blank">
-    <rect x="850" y="225" width="220" height="75" rx="20" fill="#FFCC00"/>
-    <text x="960" y="275" font-size="32" fill="#111" font-weight="bold" text-anchor="middle" font-family="'Press Start 2P', sans-serif">GO →</text>
-  </a>
-
-  <!-- Play Drive Mad (clickable) -->
-  <a xlink:href="https://drive-mad-unblock.github.io/" target="_blank">
-    <rect x="380" y="380" width="440" height="220" rx="30" fill="#3f3f46" stroke="#FFCC00" stroke-width="15"/>
-    <text x="600" y="480" font-size="110" text-anchor="middle">🚗</text>
-    <text x="600" y="570" font-size="34" fill="#fff" text-anchor="middle" font-weight="bold" font-family="'Press Start 2P', sans-serif">DRIVE MAD</text>
-  </a>
-
-  <!-- Footer -->
-  <text x="600" y="660" font-size="18" fill="#555" text-anchor="middle" font-family="'Press Start 2P', sans-serif">Click the buttons above • Powered by Scramjet</text>
-
+  <script>
+    <![CDATA[
+      document.getElementById('drive-mad-btn').addEventListener('click', () => {
+        // Communicates with your game.html to load the URL in the iframe
+        window.parent.postMessage({ 
+          action: 'load_game', 
+          url: 'https://martiantech.github.io/drive-mad/' 
+        }, '*');
+      });
+    ]]>
+  </script>
 </svg>
+
+
