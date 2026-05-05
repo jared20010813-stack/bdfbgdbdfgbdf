@@ -1,28 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <style>
-    #drive-mad-btn {
-      fill: #ffcc00;
-      stroke: #333;
-      stroke-width: 4;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    #drive-mad-btn:hover { fill: #ffdb4d; transform: scale(1.05); transform-origin: center; }
-  </style>
-
-  <rect id="drive-mad-btn" x="20" y="60" width="160" height="80" rx="10" />
-  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="18" fill="#333" pointer-events="none">
-    DRIVE MAD
-  </text>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect id="btn" x="20" y="60" width="160" height="80" rx="10" fill="#ffcc00" style="cursor:pointer" />
+  <text x="50%" y="55%" text-anchor="middle" font-family="Arial" font-weight="bold">DRIVE MAD</text>
   <script>
     <![CDATA[
-      document.getElementById('drive-mad-btn').addEventListener('click', () => {
-        // This is the CRITICAL part: it sends a signal to your games.html
-        window.parent.postMessage({ 
-          action: 'load_game', 
-          url: 'https://martiantech.github.io/drive-mad/' 
-        }, '*');
+      document.getElementById('btn').addEventListener('click', () => {
+        // We use .postMessage but wrap it to ensure the 'port' stays open
+        try {
+          window.parent.postMessage({ 
+            action: 'load_game', 
+            url: 'https://martiantech.github.io/drive-mad/' 
+          }, '*');
+        } catch(e) {
+          console.error("Failed to send message:", e);
+        }
       });
     ]]>
   </script>
