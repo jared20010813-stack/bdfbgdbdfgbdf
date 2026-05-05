@@ -18,7 +18,7 @@
   <script>
     <![CDATA[
       document.getElementById('drive-mad-btn').addEventListener('click', () => {
-        // Communicates with your game.html to load the URL in the iframe
+        // This is the CRITICAL part: it sends a signal to your games.html
         window.parent.postMessage({ 
           action: 'load_game', 
           url: 'https://martiantech.github.io/drive-mad/' 
@@ -27,5 +27,3 @@
     ]]>
   </script>
 </svg>
-
-
