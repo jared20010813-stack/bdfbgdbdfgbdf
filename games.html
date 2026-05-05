@@ -9,30 +9,36 @@
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     body { font-family: 'Press Start 2P', system-ui; }
     .doge-yellow { color: #FFCC00; }
-    iframe { width: 100%; height: calc(100vh - 80px); border: none; }
+    iframe { width: 100%; height: calc(100vh - 90px); border: none; background: #000; }
   </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen">
 
   <div class="max-w-6xl mx-auto p-6">
-    <div class="flex justify-between items-center mb-6">
-      <a href="index.html" class="text-yellow-400 hover:underline">← Back to Home</a>
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <a href="index.html" class="text-yellow-400 hover:underline text-lg">← Home</a>
       <h1 class="text-4xl font-bold doge-yellow">🚗 DRIVE MAD</h1>
-      <button onclick="closeGame()" class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-xl">✕ Close</button>
+      <button onclick="closeGame()" 
+              class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-2xl font-bold">
+        ✕ Close Game
+      </button>
     </div>
 
-    <div class="bg-black rounded-3xl overflow-hidden shadow-2xl">
+    <!-- Game Container -->
+    <div class="bg-black rounded-3xl overflow-hidden border-4 border-yellow-400 shadow-2xl">
       <iframe id="gameIframe" allowfullscreen></iframe>
     </div>
   </div>
 
+  <!-- Scramjet Scripts -->
   <script src="baremux/index.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/PeteZah-G/PeteStatic@main/scram/scramjet.all.js"></script>
 
   <script>
-    async function loadDriveMad() {
-      const url = "https://drive-mad-unblock.github.io/";   // Best working version right now
-      
+    async function loadGame() {
+      const url = "https://drive-mad-unblock.github.io/";
+
       const iframe = document.getElementById('gameIframe');
       
       try {
@@ -40,7 +46,7 @@
           await window.scramjet.loadConfig();
         }
         iframe.src = url;
-      } catch(e) {
+      } catch (e) {
         iframe.src = url;
       }
     }
@@ -50,8 +56,8 @@
       window.location.href = "index.html";
     }
 
-    // Load the game automatically
-    window.onload = loadDriveMad;
+    // Load the game when page opens
+    window.onload = loadGame;
   </script>
 </body>
 </html>
