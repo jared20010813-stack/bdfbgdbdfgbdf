@@ -1,34 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Game Environment</title>
+    <title>Game Proxy Environment</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; }
-        #game-frame { width: 100vw; height: 100vh; border: none; }
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%;
+            overflow: hidden; 
+            background: #111; 
+            font-family: sans-serif;
+        }
+        #game-frame { 
+            width: 100vw; 
+            height: 100vh; 
+            border: none; 
+        }
+        #status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 15px;
+            font-size: 12px;
+            z-index: 100;
+        }
     </style>
 </head>
 <body>
+    <div id="status-bar">Status: Ready</div>
     <iframe id="game-frame" src=""></iframe>
+
+    <!-- Load Baremux Client from your Repo via jsDelivr -->
+    <script src="https://cdn.jsdelivr.net/gh/jared20010813-stack/bdfbgdbdfgbdf@main/baremux/index.js"></script>
 
     <script>
         const frame = document.getElementById('game-frame');
+        const statusBar = document.getElementById('status-bar');
 
-        // 1. Handle initial load from URL parameter
+        // 1. Initial Load Handler
         const params = new URLSearchParams(window.location.search);
         const initialUrl = params.get('url');
+        
         if (initialUrl) {
+            statusBar.textContent = "Status: Loading Game...";
             frame.src = initialUrl;
         }
 
-        // 2. Handle clicks from your interactive SVG
+        // 2. The Interaction Listener
+        // This catches the 'load_game' command from your tell.svg
         window.addEventListener('message', (event) => {
+            // Log for debugging (Check F12 to see this)
+            console.log("SVG Message Received:", event.data);
+
             if (event.data.action === 'load_game') {
-                // This updates the iframe to Drive Mad
+                statusBar.textContent = "Status: Launching " + (event.data.name || "Drive Mad") + "...";
+                
+                // Update the iframe source
                 frame.src = event.data.url;
-                // Optional: Update browser URL without reloading
-                window.history.pushState({}, '', `?url=${encodeURIComponent(event.data.url)}`);
+                
+                // Update the URL in the address bar without reloading
+                const newUrl = window.location.pathname + "?url=" + encodeURIComponent(event.data.url);
+                window.history.pushState({ path: newUrl }, '', newUrl);
             }
         });
+
+        // 3. Frame Load Success Check
+        frame.onload = () => {
+            statusBar.textContent = "Status: Online";
+            setTimeout(() => { statusBar.style.display = 'none'; }, 3000);
+        };
     </script>
 </body>
 </html>
