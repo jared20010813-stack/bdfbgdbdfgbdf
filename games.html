@@ -3,61 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YourDoge - Drive Mad</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/standalone@4.0.0/dist/tailwind.min.js"></script>
+  <title>Drive Mad - YourDoge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     body { font-family: 'Press Start 2P', system-ui; }
-    .doge-yellow { color: #FFCC00; }
-    iframe { width: 100%; height: calc(100vh - 90px); border: none; background: #000; }
+    iframe { width: 100%; height: calc(100vh - 70px); border: none; background: #000; }
   </style>
 </head>
-<body class="bg-zinc-950 text-white min-h-screen">
-
-  <div class="max-w-6xl mx-auto p-6">
-    <!-- Header -->
-    <div class="flex justify-between items-center mb-8">
-      <a href="index.html" class="text-yellow-400 hover:underline text-lg">← Home</a>
-      <h1 class="text-4xl font-bold doge-yellow">🚗 DRIVE MAD</h1>
-      <button onclick="closeGame()" 
-              class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-2xl font-bold">
-        ✕ Close Game
-      </button>
-    </div>
-
-    <!-- Game Container -->
-    <div class="bg-black rounded-3xl overflow-hidden border-4 border-yellow-400 shadow-2xl">
-      <iframe id="gameIframe" allowfullscreen></iframe>
-    </div>
+<body class="bg-zinc-950 text-white">
+  <div class="flex justify-between items-center p-4 bg-zinc-900 border-b border-yellow-400">
+    <a href="index.html" class="text-yellow-400 hover:underline text-xl">← Home</a>
+    <h1 class="text-3xl font-bold doge-yellow">🚗 DRIVE MAD</h1>
+    <button onclick="closeGame()" class="px-8 py-3 bg-red-600 hover:bg-red-700 rounded-2xl text-lg font-bold">✕ CLOSE</button>
   </div>
-
-  <!-- Scramjet Scripts -->
-  <script src="baremux/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/PeteZah-G/PeteStatic@main/scram/scramjet.all.js"></script>
+  <iframe src="https://drive-mad-unblock.github.io/" allowfullscreen></iframe>
 
   <script>
-    async function loadGame() {
-      const url = "https://drive-mad-unblock.github.io/";
-
-      const iframe = document.getElementById('gameIframe');
-      
-      try {
-        if (window.scramjet) {
-          await window.scramjet.loadConfig();
-        }
-        iframe.src = url;
-      } catch (e) {
-        iframe.src = url;
-      }
-    }
-
     function closeGame() {
-      document.getElementById('gameIframe').src = '';
       window.location.href = "index.html";
     }
-
-    // Load the game when page opens
-    window.onload = loadGame;
   </script>
 </body>
 </html>
