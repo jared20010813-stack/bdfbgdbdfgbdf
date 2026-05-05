@@ -4,11 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YourDoge Unblocker</title>
-  
-  <!-- Tailwind via jsDelivr -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/standalone@4.0.0/dist/tailwind.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     body { font-family: 'Press Start 2P', system-ui; }
@@ -17,73 +13,20 @@
 </head>
 <body class="bg-zinc-950 text-white min-h-screen">
   <div class="max-w-6xl mx-auto p-8">
-    
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-16">
-      <div class="flex items-center gap-6">
-        <img src="main.svg" width="100" height="100" alt="YourDoge" class="drop-shadow-2xl">
-        <div>
-          <h1 class="text-6xl font-bold tracking-widest doge-yellow">YOURDOGE</h1>
-          <p class="text-emerald-400 text-2xl">UNBLOCK • GAMES • HUB</p>
-        </div>
+    <div class="flex items-center gap-6 mb-16">
+      <img src="main.svg" width="120" height="120" alt="YourDoge">
+      <div>
+        <h1 class="text-6xl font-bold doge-yellow">YOURDOGE</h1>
+        <p class="text-emerald-400 text-2xl">UNBLOCK • GAMES • HUB</p>
       </div>
     </div>
 
-    <!-- Proxy Bar -->
-    <div class="max-w-3xl mx-auto mb-20">
-      <div class="relative">
-        <input 
-          id="urlInput"
-          type="text" 
-          placeholder="https://google.com"
-          class="w-full bg-zinc-900 border-4 border-zinc-700 focus:border-yellow-400 rounded-3xl px-10 py-8 text-2xl outline-none transition-all"
-          onkeypress="if(event.key === 'Enter') proxyGo()">
-        <button onclick="proxyGo()" 
-                class="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-amber-300 text-black font-bold px-14 py-6 rounded-2xl text-xl">
-          GO →
-        </button>
-      </div>
-    </div>
-
-    <!-- Games Button -->
-    <div class="text-center">
+    <div class="text-center mt-12">
       <a href="games.html" 
-         class="inline-block bg-yellow-400 hover:bg-amber-300 text-black font-bold text-3xl px-20 py-10 rounded-3xl transition-all hover:scale-110 shadow-xl">
-        🎮 PLAY GAMES
+         class="inline-block bg-yellow-400 text-black font-bold text-4xl px-24 py-12 rounded-3xl hover:scale-110 transition-all">
+        🚗 PLAY DRIVE MAD
       </a>
     </div>
-
-    <div class="text-center mt-24 text-zinc-500">
-      Powered by Scramjet • Custom Doge Unblocker
-    </div>
   </div>
-
-  <!-- Scramjet -->
-  <script src="baremux/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/PeteZah-G/PeteStatic@main/scram/scramjet.all.js"></script>
-
-  <script>
-    async function proxyGo() {
-      let url = document.getElementById('urlInput').value.trim();
-      if (!url) return alert("Enter a URL!");
-
-      if (!url.startsWith('http')) url = 'https://' + url;
-
-      try {
-        if (window.scramjet) {
-          await window.scramjet.loadConfig();
-        }
-        window.location.href = url;
-      } catch (e) {
-        window.open(url, '_blank');
-      }
-    }
-
-    // Register Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
-        .then(() => console.log('%c✅ YourDoge Scramjet Ready', 'color:#FFCC00'));
-    }
-  </script>
 </body>
 </html>
