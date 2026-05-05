@@ -1,0 +1,49 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="700" fill="#18181b"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1200" height="120" fill="#27272a"/>
+  
+  <!-- Logo Area -->
+  <circle cx="150" cy="60" r="45" fill="#FFCC00"/>
+  <text x="150" y="75" font-size="50" font-family="sans-serif" font-weight="bold" text-anchor="middle" fill="#111111">🐶</text>
+  
+  <text x="230" y="55" font-size="52" font-family="'Press Start 2P', sans-serif" fill="#FFCC00" font-weight="bold">YOURDOGE</text>
+  <text x="230" y="85" font-size="18" fill="#34D399">UNBLOCK • GAMES • HUB</text>
+
+  <!-- Proxy Bar -->
+  <rect x="280" y="180" width="640" height="90" rx="45" fill="#27272a" stroke="#FFCC00" stroke-width="12"/>
+  <text x="340" y="235" font-size="28" fill="#888888">https://google.com</text>
+  
+  <rect x="820" y="190" width="140" height="70" rx="20" fill="#FFCC00"/>
+  <text x="890" y="235" font-size="28" fill="#111111" font-weight="bold" text-anchor="middle">GO →</text>
+
+  <!-- Games Section -->
+  <text x="600" y="340" font-size="38" fill="#FFCC00" text-anchor="middle" font-weight="bold">🎮 GAMES</text>
+  
+  <!-- Game Cards -->
+  <rect x="150" y="380" width="180" height="180" rx="25" fill="#3f3f46"/>
+  <text x="240" y="460" font-size="60" text-anchor="middle">🏂</text>
+  <text x="240" y="530" font-size="22" fill="#fff" text-anchor="middle">Slope</text>
+  
+  <rect x="380" y="380" width="180" height="180" rx="25" fill="#3f3f46"/>
+  <text x="470" y="460" font-size="60" text-anchor="middle">🔫</text>
+  <text x="470" y="530" font-size="22" fill="#fff" text-anchor="middle">1v1.LOL</text>
+  
+  <rect x="610" y="380" width="180" height="180" rx="25" fill="#3f3f46"/>
+  <text x="700" y="460" font-size="60" text-anchor="middle">⚡</text>
+  <text x="700" y="530" font-size="22" fill="#fff" text-anchor="middle">GDash</text>
+  
+  <rect x="840" y="380" width="180" height="180" rx="25" fill="#3f3f46"/>
+  <text x="930" y="460" font-size="60" text-anchor="middle">🚗</text>
+  <text x="930" y="530" font-size="22" fill="#fff" text-anchor="middle">Drive Mad</text>
+
+  <!-- Footer -->
+  <rect x="0" y="620" width="1200" height="80" fill="#18181b"/>
+  <text x="600" y="665" font-size="18" fill="#666" text-anchor="middle">Powered by Scramjet • Custom Doge Unblocker</text>
+
+  <!-- Decorative elements -->
+  <circle cx="100" cy="550" r="30" fill="#FFCC00" opacity="0.1"/>
+  <circle cx="1100" cy="450" r="40" fill="#FFCC00" opacity="0.1"/>
+</svg>
